@@ -2,6 +2,8 @@
   "name": "ReactElectron",
   "version": "0.1.0",
   "private": true,
+  "description": "A brief description of your app",
+  "author": "hujinbin",
   "main": "main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -15,7 +17,7 @@
   "scripts": {
     "dev": "react-scripts start && electron .",
     "start": "react-scripts start",
-    "build": "react-scripts build && electron-builder build",
+    "build": "react-scripts build && electron-builder build --win",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
