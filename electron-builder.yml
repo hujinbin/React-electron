@@ -3,10 +3,20 @@ productName: electron-app
 directories:
   buildResources: build
 files:
-  "build/**/*"
+  - "!**/*"
+  - "main.js"
+  - "{main.js}"
+  - "package.json"
+  - "build/**/*"
 #   - '!**/.vscode/*'
-#   - '!src/*'
+#   - '!src/*'s,mjs,cjs}'
+#   - '!{.eslintignore,.eslintrc.cj,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.mdREADME.md}'
+#   - '!{.env,.env.*,.npmrc,pnpm-lock.yal}'
+#   - '!{tsconfig.ontsonfig.node.son,tconfig.web.json
 #   - '!electron.vite.config.{js,ts,mjs,cjs}'
+#   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+#   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+#   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 #   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
 #   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
 #   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
