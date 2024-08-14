@@ -4,10 +4,10 @@ directories:
   buildResources: build
 files:
   - "!**/*"
-  - "main.js"
-  - "{main.js}"
+  - "main.js"  # 指定根目录下的 main.js
   - "package.json"
   - "build/**/*"
+  - "resources/**"
 #   - '!**/.vscode/*'
 #   - '!src/*'s,mjs,cjs}'
 #   - '!{.eslintignore,.eslintrc.cj,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.mdREADME.md}'
