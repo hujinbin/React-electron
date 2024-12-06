@@ -13,7 +13,7 @@ function createWindow () {
     }
   })
   // 加载index.html文件
-  if (process.env.MODE_ENV === 'development') {
+  if (process.env.npm_lifecycle_script.indexOf('electron .') > -1) {
     // 【开发时候使用】
     //需要和本地项目启动会端口号一致，一般不需要改。多项目启动会有端口被占用而 改变情况
     win.loadURL('http://localhost:3000/'); 
