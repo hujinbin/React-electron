@@ -1,7 +1,8 @@
 const { app, BrowserWindow } = require('electron')
 
-const url = require('url');
+// const url = require('url');
 const path = require('path');
+const isDev = require('electron-is-dev');
 
 function createWindow () {   
   // 创建浏览器窗口
@@ -13,18 +14,19 @@ function createWindow () {
     }
   })
   // 加载index.html文件
-  if (process.env.npm_lifecycle_script.indexOf('electron .') > -1) {
-    // 【开发时候使用】
-    //需要和本地项目启动会端口号一致，一般不需要改。多项目启动会有端口被占用而 改变情况
-    win.loadURL('http://localhost:3000/'); 
-  } else {
-    // 【打包时候使用】__dirname为当前文件路径
-    win.loadURL(url.format({
-      pathname: path.join(__dirname, './build/index.html'),
-      protocol: 'file:',
-      slashes: true
-    }));
-  }
+  win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  // if (process.env.npm_lifecycle_script.indexOf('electron .') > -1) {
+  //   // 【开发时候使用】
+  //   //需要和本地项目启动会端口号一致，一般不需要改。多项目启动会有端口被占用而 改变情况
+  //   win.loadURL('http://localhost:3000/'); 
+  // } else {
+  //   // 【打包时候使用】__dirname为当前文件路径
+  //   win.loadURL(url.format({
+  //     pathname: path.join(__dirname, './build/index.html'),
+  //     protocol: 'file:',
+  //     slashes: true
+  //   }));
+  // }
 //   win.loadFile('index.html')
 
   // win.loadURL('http://localhost:3000')

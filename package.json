@@ -4,7 +4,7 @@
   "private": true,
   "description": "A brief description of your app",
   "author": "hujinbin",
-  "main": "main.js",
+  "main": "public/electron.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "ele": "electron .",
-    "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"npm start\"",
+    "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && sleep 5 && electron .\"",
     "start": "react-scripts start",
     "build": "react-scripts build && electron-builder build",
     "test": "react-scripts test",
@@ -41,7 +41,11 @@
     ]
   },
   "devDependencies": {
-    "electron": "^31.0.1",
-    "electron-builder": "^24.13.3"
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^31.7.6",
+    "electron-builder": "^24.13.3",
+    "electron-is-dev": "^3.0.1",
+    "wait-on": "^8.0.1"
   }
 }
