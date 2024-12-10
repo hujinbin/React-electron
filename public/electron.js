@@ -2,9 +2,9 @@ const { app, BrowserWindow } = require('electron')
 
 // const url = require('url');
 const path = require('path');
-const isDev = require('electron-is-dev');
 
-function createWindow () {   
+async function createWindow () {  
+  const isDev = (await import('electron-is-dev')).default;
   // 创建浏览器窗口
   let win = new BrowserWindow({
     width: 800,
@@ -13,6 +13,7 @@ function createWindow () {
       nodeIntegration: true
     }
   })
+  console.log('isDev', isDev)
   // 加载index.html文件
   win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   // if (process.env.npm_lifecycle_script.indexOf('electron .') > -1) {
