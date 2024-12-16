@@ -1,56 +1,55 @@
 appId: com.electron.app
 productName: electron-app
-directories:
-  buildResources: build
+
 files:
-  - "!**/*"
-  - "main.js"  # 指定根目录下的 main.js
-  - "package.json"
-  - "build/**/*"
-  - "resources/**"
-#   - '!**/.vscode/*'
-#   - '!src/*'s,mjs,cjs}'
-#   - '!{.eslintignore,.eslintrc.cj,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.mdREADME.md}'
-#   - '!{.env,.env.*,.npmrc,pnpm-lock.yal}'
-#   - '!{tsconfig.ontsonfig.node.son,tconfig.web.json
-#   - '!electron.vite.config.{js,ts,mjs,cjs}'
-#   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
-#   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
-#   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
-#   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
-#   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
-#   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
-asarUnpack:
-  - resources/**
-win:
-  executableName: electron-app
+  - public/**
+  - build/**
+  - package.json
+
+
 nsis:
-  artifactName: ${name}-${version}-setup.${ext}
-  shortcutName: ${productName}
-  uninstallDisplayName: ${productName}
-  createDesktopShortcut: always
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  deleteAppDataOnUninstall: false
+  installerIcon: ./public/favicon.ico
+  uninstallerIcon: ./public/favicon.ico
+  installerHeaderIcon: ./public/favicon.ico
+  shortcutName: electron-app
+  unicode: true
+  perMachine: true
+
+
+
+win:
+  target:
+    - target: nsis
+      arch: x64
+  icon: ./public/favicon.ico
+  signAndEditExecutable: false
+
 mac:
-  entitlementsInherit: build/entitlements.mac.plist
-  extendInfo:
-    - NSCameraUsageDescription: Application requests access to the device's camera.
-    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
-    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
-    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
-  notarize: false
-dmg:
-  artifactName: ${name}-${version}.${ext}
+  target: dmg
+  icon: ./public/favicon.ico
+
 linux:
   target:
-    - AppImage
-    - snap
-    - deb
-  maintainer: electronjs.org
-  category: Utility
-appImage:
-  artifactName: ${name}-${version}.${ext}
-npmRebuild: false
+    - target: AppImage
+      arch: x64
+  icon: ./public/favicon.ico
+
+
+directories:
+  buildResources: assets
+  output: dist
+
+extraFiles:
+  - public/electron.js
+
 publish:
   provider: generic
   url: https://example.com/auto-updates
+
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

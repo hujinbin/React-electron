@@ -1,5 +1,6 @@
 {
-  "name": "ReactElectron",
+  "name": "react-electron",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "description": "A brief description of your app",

@@ -1,21 +1,27 @@
 const { app, BrowserWindow } = require('electron')
 
-// const url = require('url');
+const url = require('url');
 const path = require('path');
 
 async function createWindow () {  
   const isDev = (await import('electron-is-dev')).default;
   // 创建浏览器窗口
   let win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: isDev,
     }
   })
   console.log('isDev', isDev)
+  isDev && win.webContents.openDevTools()
   // 加载index.html文件
-  win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  win.loadURL(isDev ? 'http://localhost:3000' : url.format({
+    pathname: path.join(__dirname, '../build/index.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
   // if (process.env.npm_lifecycle_script.indexOf('electron .') > -1) {
   //   // 【开发时候使用】
   //   //需要和本地项目启动会端口号一致，一般不需要改。多项目启动会有端口被占用而 改变情况
